@@ -1,0 +1,24 @@
+{
+  "name": "discord-quotebot",
+  "version": "1.0.0",
+  "description": "A Discord selfbot used to embed quotes to reply to someone's message.",
+  "main": "index.js",
+  "homepage": "https://github.com/extacy/discord-quotebot",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/extacy/discord-quotebot.git"
+  },
+  "keywords": [
+    "discord",
+    "selfbot",
+    "quotebot"
+  ],
+  "author": "Extacy",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.0.0"
+  }
+}

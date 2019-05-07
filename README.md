@@ -8,7 +8,9 @@ Demonstration
 Usage
 ------
 Discord's "Developer Mode" must be enabled. Right click the drop down menu on the comment you want to quote, and click "Copy Link"
+
 Next, type `/quote {url} {reply}`
+
 Example: `/quote https://discordapp.com/channels/123/456/789 test reply`
 
 Features
@@ -18,6 +20,8 @@ Features
 
 Setup
 ------
-[Download](https://github.com/Extacy/discord-quotebot/archive/master.zip) the repository. Run `node install` inside the repo.
+[Download](https://github.com/Extacy/discord-quotebot/archive/master.zip) the repository. Run `node install` inside the directory.
+
 Edit `config.js` with your Discord auth token
+
 Run the bot with `node index.js` (The bot must be running in order to quote messages)

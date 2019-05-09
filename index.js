@@ -8,7 +8,7 @@ client.on("ready", () => {
 	console.log(`Logged in as ${client.user.username}`);
 });
 
-client.on("message", (message) => {
+client.on("message", async message => {
 	if (message.author.id === client.user.id && message.content.startsWith("/quote"))
 	{
 		var messageContent = message.content;
@@ -22,12 +22,18 @@ client.on("message", (message) => {
 			var serverId = match[1];
 			var channelId = match[2];
 			var messageId = match[3];
-			var messageText = match[4];
+			var reply = match[4];
+		
+			try
+			{
+				await client.channels.get(channelId).fetchMessage(messageId)
+					.then(quotedMessage => embedQuote(messageChannel, quotedMessage, reply));
+			} 
+			catch (error) 
+			{
+				console.log(error.stack.split("\n", 1).join(""));
+			}
 			
-			client.channels.get(channelId).fetchMessage(messageId)
-				.then(qm => embedQuote(messageChannel, qm, messageText))
-				.catch(console.error);
-				
 			message.delete().catch(console.error);
 		}
 	}

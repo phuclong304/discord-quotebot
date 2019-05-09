@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client({autoReconnect: true});
 const config = require("./config.js");
 
-var quoteRegex = /\/quote https:\/\/discordapp.com\/channels\/[0-9]+\/[0-9]+\/[0-9]+/gi;
+var quoteRegex = /\/quote https:\/\/discordapp.com\/channels\/[0-9]+\/[0-9]+\/[0-9]+/i;
 
 client.on("ready", () => {
 	console.log(`Logged in as ${client.user.username}`);

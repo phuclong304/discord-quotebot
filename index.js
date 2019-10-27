@@ -49,7 +49,7 @@ function embedQuote(channel, quotedMessage, reply) {
 				name: `${quotedMessage.author.username} said:`,
 				icon_url: quotedMessage.author.avatarURL ? quotedMessage.author.avatarURL : undefined
 			},
-		description: `${quotedMessage.content} [\[Jump to Message\]](${link})`,
+		description: `${quotedMessage.content} [[Jump to Message]](${link})`,
 		
 			timestamp: new Date(quotedMessage.createdTimestamp).toISOString(),
 			footer: {

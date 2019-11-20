@@ -14,34 +14,34 @@ client.on("message", async message => {
 	{
 		var messageContent = message.content;
 		var messageChannel = message.channel;
-		
+
 		if (quoteRegex.test(messageContent))
 		{
-			var captureRegex = /\/quote https:\/\/discordapp.com\/channels\/([0-9]+)\/([0-9]+)\/([0-9]+)(.*$)/gi;
+			var captureRegex = /\/quote (https:\/\/discordapp.com\/channels\/([0-9]+)\/([0-9]+)\/([0-9]+))(.*$)/gi;
 			var match = captureRegex.exec(messageContent);
-			link = messageContent.replace("/quote ", "");
-			
-			var serverId = match[1];
-			var channelId = match[2];
-			var messageId = match[3];
-			var reply = match[4];
-		
+
+			var link = match[1];
+			var serverId = match[2];
+			var channelId = match[3];
+			var messageId = match[4];
+			var reply = match[5];
+
 			try
 			{
 				await client.channels.get(channelId).fetchMessage(messageId)
-					.then(quotedMessage => embedQuote(messageChannel, quotedMessage, reply));
-			} 
-			catch (error) 
+						.then(quotedMessage => embedQuote(messageChannel, quotedMessage, reply, link));
+			}
+			catch (error)
 			{
 				console.log(error.stack.split("\n", 1).join(""));
 			}
-			
+
 			message.delete().catch(console.error);
 		}
 	}
 });
 
-function embedQuote(channel, quotedMessage, reply) {
+function embedQuote(channel, quotedMessage, reply, link) {
 	channel.send("", {
 		embed: {
 			color: quotedMessage.member.displayColor,
@@ -53,7 +53,7 @@ function embedQuote(channel, quotedMessage, reply) {
 		
 			timestamp: new Date(quotedMessage.createdTimestamp).toISOString(),
 			footer: {
-				text: "in " + quotedMessage.channel.name + " from '" + quotedMessage.channel.guild.name + "'"
+				text: "in #" + quotedMessage.channel.name + " from '" + quotedMessage.channel.guild.name + "'"
 			}
 		}
 	});
